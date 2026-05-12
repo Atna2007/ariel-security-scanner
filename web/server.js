@@ -39,6 +39,21 @@ app.post('/scan', (req, res) => {
 
     // Execute command from the ariel-security-scanner directory
     const scannerPath = path.join(__dirname, '..');
+    const distPath = path.join(scannerPath, 'dist', 'index.js');
+
+    // Debug logging
+    console.log('__dirname:', __dirname);
+    console.log('scannerPath:', scannerPath);
+    console.log('distPath:', distPath);
+    console.log('dist exists:', fs.existsSync(distPath));
+
+    // Verify dist directory exists
+    if (!fs.existsSync(distPath)) {
+        return res.json({
+            success: false,
+            error: `Scanner not built. Looking for: ${distPath}`
+        });
+    }
 
     exec(command, { cwd: scannerPath, timeout: 60000 }, (error, stdout, stderr) => {
         if (error) {
