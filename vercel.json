@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "web/package.json",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "web/**",
+          "../dist/**"
+        ]
+      }
+    }
+  ],
+  "functions": {
+    "web/server.js": {
+      "runtime": "nodejs20.x",
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "web/server.js"
+    }
+  ]
+}
