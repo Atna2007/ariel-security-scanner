@@ -19,7 +19,7 @@ app.post('/scan', (req, res) => {
     }
 
     // Build command
-    let command = `node dist/index.js "${url}"`;
+    let command = `node dist/cli/index.js "${url}"`;
 
     if (modules && modules.length > 0 && modules.join(',') !== 'all') {
         command += ` --modules ${modules.join(',')}`;
@@ -39,7 +39,8 @@ app.post('/scan', (req, res) => {
 
     // Execute command from the ariel-security-scanner directory
     const scannerPath = path.join(__dirname, '..');
-    const distPath = path.join(scannerPath, 'dist', 'index.js');
+    const distPath = path.join(scannerPath, 'dist', 'cli', 'index.js');
+    const fs = require('fs');
 
     // Debug logging
     console.log('__dirname:', __dirname);
@@ -66,7 +67,6 @@ app.post('/scan', (req, res) => {
 
         // Read the output file if it exists
         const outputPath = path.join(scannerPath, outputFile);
-        const fs = require('fs');
 
         let resultData = '';
         if (fs.existsSync(outputPath)) {
