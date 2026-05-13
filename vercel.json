@@ -12,12 +12,6 @@
       }
     }
   ],
-  "functions": {
-    "web/server.js": {
-      "runtime": "nodejs20.x",
-      "maxDuration": 30
-    }
-  },
   "routes": [
     {
       "src": "/(.*)",
