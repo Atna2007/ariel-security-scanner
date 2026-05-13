@@ -1,4 +1,82 @@
 /* style.css */
+
+/* Container */
 .container {
     @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Custom animations */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Glass effect enhancements */
+.bg-gray-800.bg-opacity-50 {
+    background-color: rgba(31, 41, 55, 0.5);
+}
+
+.backdrop-blur-sm {
+    backdrop-blur: blur(4px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4b5563;
+}
+
+/* Focus ring customizations */
+:focus-visible {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+}
+
+/* Dark mode enhancements */
+.dark-mode {
+    --background-color: #0f172a;
+    --foreground-color: #f8fafc;
+    --primary-color: #3b82f6;
+    --secondary-color: #10b981;
+    --accent-color: #f59e0b;
+    --border-color: #334155;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+    .container {
+        @apply px-3 py-6;
+    }
+
+    header h1 {
+        @apply text-3xl;
+    }
+
+    header p {
+        @apply text-lg;
+    }
+
+    .main-card {
+        @apply p-6;
+    }
 }
